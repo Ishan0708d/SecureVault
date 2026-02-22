@@ -34,7 +34,7 @@ export default function Dashboard() {
   const fetchFiles = async () => {
     try {
       const token = await auth.currentUser.getIdToken()
-      const res = await axios.get('http://localhost:3000/files', {
+      const res = await axios.get('import.meta.env.VITE_API_URL/files', {
         headers: { Authorization: `Bearer ${token}` }
       })
       setFiles(res.data)
@@ -56,7 +56,7 @@ export default function Dashboard() {
     if (!window.confirm('Are you sure you want to delete this file?')) return
     try {
       const token = await auth.currentUser.getIdToken()
-      await axios.delete(`http://localhost:3000/files/${fileId}`, {
+      await axios.delete(`import.meta.env.VITE_API_URL/files/${fileId}`, {
         headers: { Authorization: `Bearer ${token}` }
       })
       setFiles(files.filter(f => f.id !== fileId))
@@ -170,7 +170,7 @@ export default function Dashboard() {
                     </td>
                     <td style={{ padding: '12px 16px' }}>
                       <div style={{ display: 'flex', gap: '8px' }}>
-                        <a href={`http://localhost:3000/${file.file_url}`} target="_blank" rel="noreferrer"
+                        <a href={`import.meta.env.VITE_API_URL/${file.file_url}`} target="_blank" rel="noreferrer"
                           style={{ fontSize: '0.8rem', color: '#8fafd4', textDecoration: 'none', border: '1px solid rgba(143,175,212,0.3)', borderRadius: '5px', padding: '3px 10px' }}>
                           Download
                         </a>

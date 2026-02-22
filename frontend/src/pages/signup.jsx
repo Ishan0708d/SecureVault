@@ -28,7 +28,7 @@ export default function Signup() {
       const user = userCredential.user
       const token = await user.getIdToken()
 
-      await axios.post('http://localhost:3000/auth/register', { email }, {
+      await axios.post('import.meta.env.VITE_API_URL/auth/register', { email }, {
         headers: { Authorization: `Bearer ${token}` }
       })
 
