@@ -4,10 +4,20 @@ const admin = require('../firebaseAdmin')
 const pool = require('../db')
 
 router.post('/register', async (req, res) => {
-  const token = req.headers.authorization?.split('Bearer ')[1]
+  const authHeader = req.headers.authorization
+  const token = authHeader?.split('Bearer ')[1]
+
+  // 🔍 DEBUG LOGS — DO NOT KEEP IN PRODUCTION
+  console.log("=== /auth/register hit ===")
+  console.log("Authorization header exists:", !!authHeader)
+  console.log("Token exists:", !!token)
+  console.log("Request email:", req.body?.email)
 
   try {
     const decoded = await admin.auth().verifyIdToken(token)
+
+    console.log("Token verified for UID:", decoded.uid)
+    console.log("Token project:", decoded.aud)
 
     const { email } = req.body
 
@@ -16,9 +26,11 @@ router.post('/register', async (req, res) => {
       [decoded.uid, email]
     )
 
+    console.log("User inserted into DB")
+
     res.status(201).json({ message: 'User registered' })
   } catch (error) {
-    console.log('Error:', error.message)
+    console.error("❌ VERIFY TOKEN ERROR:", error)
     res.status(401).json({ error: 'Unauthorized' })
   }
 })
