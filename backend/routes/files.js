@@ -80,16 +80,20 @@ router.get('/', verifyToken, async (req, res) => {
       'SELECT id FROM users WHERE firebase_uid = $1',
       [req.user.uid]
     )
-    const userId = userResult.rows[0].id
 
+    if (userResult.rows.length === 0) {
+      return res.json([])
+    }
+
+    const userId = userResult.rows[0].id
     const result = await pool.query(
       'SELECT * FROM files WHERE user_id = $1 ORDER BY uploaded_at DESC',
       [userId]
     )
     res.json(result.rows)
   } catch (error) {
-    console.log('Error:', error.message)
-    res.status(500).json({ error: 'Failed to fetch files' })
+    console.log('Fetch error:', error)
+    res.status(500).json({ error: error.message })
   }
 })
 
