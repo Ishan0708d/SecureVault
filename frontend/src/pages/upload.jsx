@@ -41,7 +41,7 @@ export default function Upload() {
       const formData = new FormData()
       formData.append('file', file)
 
-      await axios.post('import.meta.env.VITE_API_URL/files/upload', formData, {
+      await axios.post(`${import.meta.env.VITE_API_URL}/files/upload`, formData, {
         headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'multipart/form-data' },
         onUploadProgress: (e) => {
           const pct = Math.round((e.loaded * 100) / e.total)

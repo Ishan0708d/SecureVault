@@ -34,7 +34,7 @@ export default function Dashboard() {
   const fetchFiles = async () => {
     try {
       const token = await auth.currentUser.getIdToken()
-      const res = await axios.get('import.meta.env.VITE_API_URL/files', {
+      await axios.get(`${import.meta.env.VITE_API_URL}/files`, {
         headers: { Authorization: `Bearer ${token}` }
       })
       setFiles(res.data)
@@ -56,7 +56,7 @@ export default function Dashboard() {
     if (!window.confirm('Are you sure you want to delete this file?')) return
     try {
       const token = await auth.currentUser.getIdToken()
-      await axios.delete(`import.meta.env.VITE_API_URL/files/${fileId}`, {
+      await axios.delete(`${import.meta.env.VITE_API_URL}/files/${fileId}`, {
         headers: { Authorization: `Bearer ${token}` }
       })
       setFiles(files.filter(f => f.id !== fileId))
