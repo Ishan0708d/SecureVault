@@ -7,7 +7,7 @@ require('dotenv').config();
 
 const app = express();
 app.use(cors({
-  origin: 'https://secure-vault-hz8xereff-ishand694-gmailcoms-projects.vercel.app'
+  origin: 'https://secure-vault-six-plum.vercel.app'
 }))
 app.use(express.json());
 
