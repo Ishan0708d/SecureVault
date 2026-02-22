@@ -6,7 +6,9 @@ const path = require('path')
 require('dotenv').config();
 
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: 'https://secure-vault-hz8xereff-ishand694-gmailcoms-projects.vercel.app'
+}))
 app.use(express.json());
 
 app.get('/', (req, res) => {
