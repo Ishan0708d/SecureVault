@@ -7,7 +7,18 @@ require('dotenv').config();
 
 const app = express();
 app.use(cors({
-  origin: 'https://secure-vault-six-plum.vercel.app'
+  origin: (origin, callback) => {
+    if (
+      !origin ||
+      origin === 'https://secure-vault-six-plum.vercel.app' ||
+      origin.includes('ishand694') ||
+      origin === 'http://localhost:5173'
+    ) {
+      callback(null, true)
+    } else {
+      callback(new Error('Not allowed by CORS'))
+    }
+  }
 }))
 app.use(express.json());
 
