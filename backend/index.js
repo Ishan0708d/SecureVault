@@ -16,6 +16,7 @@ app.use(cors({
     if (
       !origin ||
       origin === 'https://secure-vault-six-plum.vercel.app' ||
+      origin.endsWith('.vercel.app') ||
       origin === 'http://localhost:5173'
     ) {
       callback(null, true)
