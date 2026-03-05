@@ -34,7 +34,7 @@ export default function Dashboard() {
   const fetchFiles = async () => {
     try {
       const token = await auth.currentUser.getIdToken()
-      await axios.get(`${import.meta.env.VITE_API_URL}/files`, {
+      const res = await axios.get(`${import.meta.env.VITE_API_URL}/files`, {
         headers: { Authorization: `Bearer ${token}` }
       })
       setFiles(res.data)
@@ -71,6 +71,10 @@ export default function Dashboard() {
 
   const totalSize = files.reduce((acc, f) => acc + (f.size || 0), 0)
   const recentFiles = [...files].sort((a, b) => new Date(b.uploaded_at) - new Date(a.uploaded_at)).slice(0, 4)
+
+  if (loading) {
+    return <Loading onFinish={() => setLoading(false)} />
+  }
 
   return (
     <div style={{ fontFamily: "'DM Sans', sans-serif", minHeight: '100vh', background: 'linear-gradient(135deg, #0a0f1a 0%, #0f1e3a 50%, #0a1628 100%)', color: '#fff' }}>

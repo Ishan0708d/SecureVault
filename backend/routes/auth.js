@@ -30,7 +30,7 @@ router.post('/register', async (req, res) => {
 
     res.status(201).json({ message: 'User registered' })
   } catch (error) {
-    console.error("❌ VERIFY TOKEN ERROR:", error)
+    console.error("VERIFY TOKEN ERROR:", error)
     res.status(401).json({ error: 'Unauthorized' })
   }
 })
