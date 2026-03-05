@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { auth } from '../firebase'
 import { signOut } from 'firebase/auth'
 import { useNavigate } from 'react-router-dom'
-import Loading from '/components/Loading'
+import Loading from '../components/loading'
 import axios from 'axios'
 
 
