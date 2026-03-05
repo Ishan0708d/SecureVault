@@ -3,7 +3,12 @@ const cors = require('cors');
 const authRoutes = require('./routes/auth')
 const filesRoutes = require('./routes/files')
 const path = require('path')
+const fs = require('fs')
 require('dotenv').config();
+
+if (!fs.existsSync('uploads')) {
+  fs.mkdirSync('uploads')
+}
 
 const app = express();
 app.use(cors({
@@ -11,7 +16,6 @@ app.use(cors({
     if (
       !origin ||
       origin === 'https://secure-vault-six-plum.vercel.app' ||
-      origin.includes('ishand694') ||
       origin === 'http://localhost:5173'
     ) {
       callback(null, true)

@@ -77,7 +77,7 @@ export default function Dashboard() {
 
       {/* Top Nav */}
       <div style={{ background: 'rgba(255,255,255,0.04)', borderBottom: '1px solid rgba(255,255,255,0.08)', padding: '0 2rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: '60px', backdropFilter: 'blur(12px)' }}>
-        <span style={{ fontWeight: 700, fontSize: '1.1rem', letterSpacing: '-0.5px' }}>MyApp</span>
+        <span style={{ fontWeight: 700, fontSize: '1.1rem', letterSpacing: '-0.5px' }}>SecureVault</span>
         <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
           <span style={{ color: '#aaa', fontSize: '0.9rem' }}>{auth.currentUser?.email}</span>
           <button onClick={handleLogout} style={{ background: 'none', border: '1px solid rgba(255,255,255,0.15)', borderRadius: '6px', padding: '6px 14px', cursor: 'pointer', fontSize: '0.85rem', color: '#fff' }}>Logout</button>
