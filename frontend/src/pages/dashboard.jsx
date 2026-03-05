@@ -2,7 +2,9 @@ import { useEffect, useState } from 'react'
 import { auth } from '../firebase'
 import { signOut } from 'firebase/auth'
 import { useNavigate } from 'react-router-dom'
+import Loading from '/components/Loading'
 import axios from 'axios'
+
 
 const formatDate = (dateStr) => {
   return new Date(dateStr).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
@@ -40,8 +42,6 @@ export default function Dashboard() {
       setFiles(res.data)
     } catch (err) {
       console.error(err)
-    } finally {
-      setLoading(false)
     }
   }
 
@@ -174,7 +174,7 @@ export default function Dashboard() {
                     </td>
                     <td style={{ padding: '12px 16px' }}>
                       <div style={{ display: 'flex', gap: '8px' }}>
-                        <a href={`import.meta.env.VITE_API_URL/${file.file_url}`} target="_blank" rel="noreferrer"
+                        <a href={`${import.meta.env.VITE_API_URL}/${file.file_url}`} target="_blank" rel="noreferrer"
                           style={{ fontSize: '0.8rem', color: '#8fafd4', textDecoration: 'none', border: '1px solid rgba(143,175,212,0.3)', borderRadius: '5px', padding: '3px 10px' }}>
                           Download
                         </a>
